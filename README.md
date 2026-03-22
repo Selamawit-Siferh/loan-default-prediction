@@ -52,7 +52,7 @@ The dataset is a synthetic Kaggle dataset (`loan_default_prediction.csv`) contai
 - `scaler.pkl` – Fitted `StandardScaler` for numerical features.  
 - `feature_columns.pkl` – List of feature names in the order expected by the model.  
 - `requirements.txt` – Python dependencies for the app.  
-- `report.md` – Detailed project report (optional).  
+- `report.ipynb` – Detailed project report (optional).  
 - `README.md` – This file.
 
 ## Installation & Local Usage
