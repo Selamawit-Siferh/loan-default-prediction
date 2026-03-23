@@ -1,64 +1,108 @@
 # Loan Default Prediction
 
-Predict the probability of loan default using machine learning.  
-This project trains a regression model (linear regression with regularization) to estimate the likelihood that an applicant will default on a loan.
+Predict the probability of loan default using machine learning. This project builds a **Logistic Regression** model to estimate the likelihood that an applicant will default on a loan.
 
 ## Live Demo
-[🔗 Streamlit App](https://loan-default-prediction-selamawit-siferh.streamlit.app/)
+
+[🔗 Streamlit App](https://loan-default-prediction.streamlit.app)
 
 ## Overview
+
 Banks and financial institutions need to assess credit risk to make informed lending decisions. This project builds a predictive model that estimates the probability of default based on applicant features such as income, loan amount, and employment status.
 
 ## Problem Definition
-- **Goal:** Predict whether a loan applicant will default (1) or not default (0).  
-- **Type:** Binary classification (model output is a probability).  
-- **Success Criteria:**  
-  - Accuracy >80%  
-  - Precision >75%  
-  - Recall >70%  
-  - F1‑Score >72%
+
+- **Problem:** Predict whether a loan applicant will default (1) or not default (0)
+- **Goal:** Binary classification
+- **Success Criteria:**
+  - Accuracy >80%
+  - Precision >75%
+  - Recall >70%
+  - F1-Score >72%
 
 ## Dataset
-The dataset is a synthetic Kaggle dataset (`loan_default_prediction.csv`) containing 1,000 rows with the following features:
-- `income`: Monthly income of the applicant.
-- `loan_amount`: Requested loan amount.
-- `employment_status`: Employment status (Employed, Self‑employed, Unemployed).
-- `default`: Target variable (1 = default, 0 = no default).
+
+The dataset is a synthetic dataset containing loan application information with the following features:
+
+| Feature             | Description                                   |
+| ------------------- | --------------------------------------------- |
+| `income`            | Monthly income of the applicant               |
+| `loan_amount`       | Requested loan amount                         |
+| `employment_status` | Employment status (Employed, Unemployed)      |
+| `default`           | Target variable (1 = default, 0 = no default) |
 
 ## Methodology
-1. **Data Cleaning:**  
-   - Dropped rows with missing values.  
-   - Removed duplicate rows.  
-   - Capped outliers using the IQR method.
 
-2. **Feature Engineering:**  
-   - Created ratio features: `income_to_loan` and `loan_to_income`.  
-   - One‑hot encoded `employment_status` with `drop_first=True`.  
-   - Standardized numerical features using `StandardScaler`.
+### 1. Data Cleaning
 
-3. **Model Training & Tuning:**  
-   - Baseline linear regression was compared with ridge and lasso regression.  
-   - Hyperparameter tuning was performed using **GridSearchCV** over `alpha` values.  
-   - Best model: Ridge regression with `alpha=0.1` (based on validation RMSE).
+- Checked and removed missing values
+- Removed duplicate rows
+- Capped outliers using IQR (Interquartile Range) method
 
-4. **Evaluation:**  
-   - Test set performance:  
-     - RMSE: 0.1234  
-     - MAE: 0.0987  
-     - R²: 0.8456
+### 2. Feature Engineering
+
+- Created ratio features:
+  - `income_to_loan` = income / loan_amount
+  - `loan_to_income` = loan_amount / income
+- One-hot encoded `employment_status` with `drop_first=True` (created `emp_Unemployed`)
+- Standardized numerical features using `StandardScaler`
+
+### 3. Data Splitting
+
+- Training set: 60%
+- Validation set: 20%
+- Test set: 20%
+- Stratified split to maintain class distribution
+
+### 4. Model Selection
+
+- **Algorithm:** Logistic Regression (Supervised Classification)
+- **Rationale:**
+  - Low complexity and high interpretability
+  - Outputs probabilities as risk scores
+  - Suitable for binary classification problems
+  - Low computational cost for production deployment
+
+### 5. Model Training & Tuning
+
+- Baseline model with default hyperparameters (C=1.0, solver='lbfgs')
+- Hyperparameter tuning using **Grid Search** with 5-fold cross-validation
+- Tuned parameters: `C` (regularization strength) and `solver`
+- Best model selected based on ROC-AUC score
+
+### 6. Model Evaluation
+
+- **Test Set Performance:**
+  - Accuracy: 72.0%
+  - Precision: 70.5%
+  - Recall: 71.4%
+  - F1-Score: 71.0%
+  - ROC-AUC: 72.3%
 
 ## Files in Repository
-- `Classification.ipynb` – Jupyter notebook with the complete analysis, model training, and evaluation.  
-- `App.py` – Streamlit application for interactive predictions.  
-- `loan_default_model.pkl` – Trained model (Ridge regression).  
-- `scaler.pkl` – Fitted `StandardScaler` for numerical features.  
-- `feature_columns.pkl` – List of feature names in the order expected by the model.  
-- `requirements.txt` – Python dependencies for the app.  
-- `report.ipynb` – Detailed project report (optional).  
-- `README.md` – This file.
+
+| File                     | Description                                              |
+| ------------------------ | -------------------------------------------------------- |
+| `app.py`                 | Streamlit web application for interactive predictions    |
+| `loan_default_model.pkl` | Trained Logistic Regression model                        |
+| `scaler.pkl`             | Fitted StandardScaler for numerical features             |
+| `feature_columns.pkl`    | List of feature names in the order expected by the model |
+| `requirements.txt`       | Python dependencies for the app                          |
+| `Classification.ipynb`   | Jupyter notebook with complete analysis and training     |
+| `README.md`              | Project documentation                                    |
 
 ## Installation & Local Usage
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Selamawit-Siferh/loan-default-prediction.git
-   cd loan-default-prediction
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip package manager
+
+### Steps
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/Selamawit-Siferh/loan-default-prediction.git
+cd loan-default-prediction
+```
