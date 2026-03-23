@@ -4,8 +4,8 @@ Predict the probability of loan default using machine learning. This project bui
 
 ## Live Demo
 
-[🔗[ Streamlit App](https://loan-default-prediction.streamlit.app)](https://loan-default-prediction-selamawit-siferh.streamlit.app/)
 
+[🔗 Streamlit App](https://loan-default-prediction-selamawit-siferh.streamlit.app)
 ## Overview
 
 Banks and financial institutions need to assess credit risk to make informed lending decisions. This project builds a predictive model that estimates the probability of default based on applicant features such as income, loan amount, and employment status.
