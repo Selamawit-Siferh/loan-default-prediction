@@ -4,7 +4,7 @@ Predict the probability of loan default using machine learning. This project bui
 
 ## Live Demo
 
-[🔗 Streamlit App](https://loan-default-prediction.streamlit.app)
+[🔗[ Streamlit App](https://loan-default-prediction.streamlit.app)](https://loan-default-prediction-selamawit-siferh.streamlit.app/)
 
 ## Overview
 
