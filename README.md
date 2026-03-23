@@ -1,8 +1,10 @@
-
 # Loan Default Prediction
 
 Predict the probability of loan default using machine learning.  
 This project trains a regression model (linear regression with regularization) to estimate the likelihood that an applicant will default on a loan.
+
+## Live Demo
+[🔗 Streamlit App](https://loan-default-prediction-selamawit-siferh.streamlit.app/)
 
 ## Overview
 Banks and financial institutions need to assess credit risk to make informed lending decisions. This project builds a predictive model that estimates the probability of default based on applicant features such as income, loan amount, and employment status.
